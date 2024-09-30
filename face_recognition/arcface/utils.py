@@ -13,7 +13,7 @@ def read_features(feature_path):
 
 
 def compare_encodings(encoding, encodings):
-    sims = np.dot(encodings, encoding.T)
+    sims = np.dot(encodings, encoding.T) / (np.linalg.norm(encodings, axis=1) * np.linalg.norm(encoding))
     pare_index = np.argmax(sims)
     score = sims[pare_index]
     return score, pare_index
